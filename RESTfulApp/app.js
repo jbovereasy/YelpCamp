@@ -19,6 +19,10 @@ var blogSchema = new mongoose.Schema({
 var Blog = mongoose.model("Blog", blogSchema);
 
 // RESTful routes
+app.get("/", function(req, res) {
+  res.redirect("/blogs");
+});
+
 app.get("/blogs", function(req, res) {
   res.render("index");
 });
