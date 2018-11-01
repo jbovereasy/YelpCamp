@@ -5,7 +5,7 @@ var express = require("express"),
 
 // APP CONFIG
 mongoose.connect(
-  "mongodb://localhost:27017/restful_blog_app",
+  "mongodb://localhost/restful_blog_app",
   { useNewUrlParser: true }
 );
 app.set("view engine", "ejs");
@@ -20,7 +20,7 @@ var blogSchema = new mongoose.Schema({
   created: { type: Date, default: Date.now }
 });
 var Blog = mongoose.model("Blog", blogSchema);
-``;
+
 // RESTful routes
 app.get("/", function(req, res) {
   res.redirect("/blogs");
@@ -29,12 +29,11 @@ app.get("/", function(req, res) {
 app.get("/blogs", function(req, res) {
   Blog.find({}, function(err, blogs) {
     if (err) {
-      console.log("Error!");
+      console.log("Error!!!!");
     } else {
       res.render("index", { blogs: blogs });
     }
   });
-  res.render("index");
 });
 
 app.listen(3000, function() {
